@@ -3,6 +3,7 @@ package com.example.week_01;
 import android.content.Context;
 import android.graphics.Canvas;
 
+
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -25,6 +26,8 @@ public class WeekFlowLayout extends LinearLayout {
     public WeekFlowLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
+
+
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {

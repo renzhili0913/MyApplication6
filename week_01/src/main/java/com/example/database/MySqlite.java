@@ -11,7 +11,8 @@ public class MySqlite extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table users(name,text)");
+        db.execSQL("create table users(name,text," +
+                "uuid text)");
     }
 
     @Override

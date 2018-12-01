@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.Editable;
 
+import com.example.bean.UserBean;
 import com.example.database.MySqlite;
 
 import java.util.ArrayList;
@@ -26,25 +27,27 @@ public class UserDao {
         }
         return insanner;
     }
-
-    public void add(String text) {
+//添加数据到数据库
+    public void add(String text,String uuid) {
         ContentValues values=new ContentValues();
         values.put("name",text);
+        values.put("uuid",uuid);
         sb.insert("users",null,values);
     }
-
+    //查询数据库中所有的数据
     @SuppressLint("Recycle")
-    public List<String> select() {
-        List<String> list = new ArrayList<>();
+    public List<UserBean> select() {
+        List<UserBean> list = new ArrayList<>();
         Cursor users = sb.query("users", null, null, null, null, null, null);
         while (users.moveToNext()){
             String name = users.getString(users.getColumnIndex("name"));
-            list.add(name);
+            String uuid = users.getString(users.getColumnIndex("uuid"));
+            list.add(new UserBean(name,uuid));
         }
         return list;
     }
-
-    public void delete(String s) {
-        sb.delete("users","name=?",new String[]{s});
+    //通过标识删除单条数据
+    public void delete(String uuid) {
+        sb.delete("users","uuid=?",new String[]{uuid});
     }
 }

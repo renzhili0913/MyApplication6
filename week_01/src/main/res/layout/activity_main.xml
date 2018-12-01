@@ -11,7 +11,8 @@
     <com.example.week_01.TitleBarView
         android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        />
 
     <com.example.week_01.WeekGroupNameLayout
         android:layout_width="match_parent"
@@ -30,6 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        app:textColor="#00f"
         android:text="热门搜索"/>
 
     <com.example.week_01.WeekFlowLayout
