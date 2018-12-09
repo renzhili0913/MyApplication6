@@ -19,7 +19,8 @@ public class IPresenterImpl implements IPresenter {
         iModel.getRequeryData(url, params, clazz, new MyCallBack() {
             @Override
             public void setData(Object o) {
-                if (o instanceof PhoneBean){
+                iView.getRrequeryData(o);
+               /* if (o instanceof PhoneBean){
                     PhoneBean phoneBean= (PhoneBean) o;
                     if (phoneBean==null||!phoneBean.isSuccess()){
                         iView.onFail(phoneBean.getMsg());
@@ -33,7 +34,7 @@ public class IPresenterImpl implements IPresenter {
                     }else{
                         iView.onSuccess(newBean);
                     }
-                }
+                }*/
 
             }
         });

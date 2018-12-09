@@ -199,34 +199,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onSuccess(Object o) {
-        String result = (String) o;
-        Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-        intent.putExtra("names", names);
-        startActivity(intent);
-        finish();
-        //登录成功判断是否记住密码
-        if (remember_password.isChecked()) {
-            editor.putString("names", names);
-            editor.putString("pass", pass);
-            editor.putBoolean("remember", true);
-            editor.commit();
-        } else {
-            editor.clear();
-            editor.commit();
-        }
-        //登录成功判断是否勾选自动登录
-        if (automatic_logon.isChecked()) {
-            editor.putBoolean("automatic", true);
-            editor.commit();
+    public void getRrequeryData(Object o) {
+        if (o instanceof PhoneBean){
+            PhoneBean phoneBean= (PhoneBean) o;
+            if (phoneBean==null||!phoneBean.isSuccess()){
+                Toast.makeText(MainActivity.this, phoneBean.getMsg(), Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(MainActivity.this, phoneBean.getMsg(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                intent.putExtra("names", names);
+                startActivity(intent);
+                finish();
+                //登录成功判断是否记住密码
+                if (remember_password.isChecked()) {
+                    editor.putString("names", names);
+                    editor.putString("pass", pass);
+                    editor.putBoolean("remember", true);
+                    editor.commit();
+                } else {
+                    editor.clear();
+                    editor.commit();
+                }
+                //登录成功判断是否勾选自动登录
+                if (automatic_logon.isChecked()) {
+                    editor.putBoolean("automatic", true);
+                    editor.commit();
+                }
+            }
         }
     }
 
-    @Override
-    public void onFail(String str) {
-        Toast.makeText(MainActivity.this, str, Toast.LENGTH_SHORT).show();
-    }
     //动态设置网络权限
     private void stateNetWork() {
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){

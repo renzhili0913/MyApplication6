@@ -28,13 +28,14 @@ public class LoginActivity extends AppCompatActivity {
         //创建适配器
         viewPager.setAdapter(new MyFragmentAdapter(getSupportFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
-        //接受zhi
+
 
 
     }
     //传值到fragment
     public void  getData(MyCallBack myCallBack){
         this.myCallBack=myCallBack;
+        //接受zhi
         Intent intent = getIntent();
         String names = intent.getStringExtra("names");
         myCallBack.setData(names);

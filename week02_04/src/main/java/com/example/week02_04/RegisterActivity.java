@@ -159,16 +159,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     @Override
-    public void onSuccess(Object o) {
-        String result= (String) o;
-        Toast.makeText(RegisterActivity.this,result,Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    @Override
-    public void onFail(String str) {
-        Toast.makeText(RegisterActivity.this,str,Toast.LENGTH_SHORT).show();
+    public void getRrequeryData(Object o) {
+        if (o instanceof PhoneBean) {
+            PhoneBean phoneBean = (PhoneBean) o;
+            Toast.makeText(RegisterActivity.this, phoneBean.getMsg(), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }

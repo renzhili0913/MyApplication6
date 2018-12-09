@@ -87,25 +87,24 @@ public class ShowFragment extends Fragment implements IView {
     }
 
     @Override
-    public void onSuccess(Object o) {
-        NewBean newBean  = (NewBean) o;
-        if (mpage==1){
-            myBaseAdapter.setList(newBean.getPosts());
-        }else{
-            myBaseAdapter.addList(newBean.getPosts());
+    public void getRrequeryData(Object o) {
+        if(o instanceof NewBean){
+            NewBean newBean= (NewBean) o;
+            if (newBean==null||!newBean.isSuccess()){
+                Toast.makeText(getActivity(),newBean.getStatus(),Toast.LENGTH_SHORT).show();
+            }else{
+                if (mpage==1){
+                    myBaseAdapter.setList(newBean.getPosts());
+                }else{
+                    myBaseAdapter.addList(newBean.getPosts());
+                }
+                mpage++;
+                listView.onRefreshComplete();
+                //设置图片集合
+                viewPager.setImages(newBean.getPosts());
+                //banner设置方法全部调用完毕时最后调用
+                viewPager.start();
+            }
         }
-        mpage++;
-        listView.onRefreshComplete();
-        //设置图片集合
-        viewPager.setImages(newBean.getPosts());
-        //banner设置方法全部调用完毕时最后调用
-        viewPager.start();
-
-    }
-
-
-    @Override
-    public void onFail(String str) {
-        Toast.makeText(getActivity(),str,Toast.LENGTH_SHORT).show();
     }
 }
